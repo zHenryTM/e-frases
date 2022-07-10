@@ -4,18 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
     <title>homepage</title>
 </head>
 <body>
-    <h3>Veja as últimas 3 frases!</h3>
-    <% posts.forEach(post => { %>
-        <p><%= post.frase %></p>
-        <p><%= post.tags %></p>
-        <p><%= post.author.name %>, <%= post.createdAt %> </p>
-        <hr>
-    <% }) %>
+
+    <section id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">E-frases</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"  data-bs-target="#info" aria-controls="info" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="info">
+                <ul class="navbar-nav ms-auto"> 
+                    <li class="nav-item">
+                        <a href="/create/user" class="nav-link">Cadastre-se</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Quem somos?</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        
+    </section>
+
+    <section id="main-content">
+        <div class="container-fluid">
+            <h3>Veja as últimas 3 frases!</h3>
+
+            <% posts.forEach(post => { %>
+                <div class="card w-50">
+                    <div class="card-body">
+                        <h5 class="card-title">"<em><%= post.frase %></em>"</h5>
+                        
+                        <p class="text-muted"><span style="text-transform: uppercase;"><%= post.author.surname %></span>, <%= post.author.name %> - <%= post.year %> </p>
+                    </div>
+                </div>
+            <% }) %>
+
+        <a href="/logout">Logout</a>            
+     </div>
+    </section>
+    
 
 
-    <a href="/logout">Logout</a>
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
