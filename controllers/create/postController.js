@@ -29,10 +29,10 @@ router.post("/create/post", authMiddleware, async (req, res) => {
             .then(async post => {
                 console.log(await post.populate("author"))
                 user = await User.findByIdAndUpdate(userId, {$push: {posts: post._id}})
+                res.redirect("/")
             })
             .catch(err => console.log("something went wrong..." + err))
 
-        res.redirect("/")
     } catch(err) {
         console.log("Error creating a new post..." + err)
     }
