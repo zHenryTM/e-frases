@@ -6,26 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/form/styles.css">
 
     <title>create post</title>
 </head>
 <body>
-    
-    <form action="/create/post" method="post">
-        <div class="mb-3">
-            <label for="frase" class="form-label">Frase: </label>
-            <input type="text" class="form-control" name="frase" id="frase" autocomplete="off">
+    <section>
+        <h3 class="mb-3">Crie um novo post</h3>
+        <div class="card">
+            <div class="card-body">
+                <form action="/create/post" method="post">
+                    <div class="mb-3">
+                        <label for="frase" class="form-label">Frase: </label>
+                        <input type="text" class="form-control" name="frase" id="frase" autocomplete="off">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tags" class="form-label">Tags: </label>
+                        <input type="text" class="form-control" name="tags" id="tags" autocomplete="off">
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary">Criar post</button>
+                        <a href="/" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                    
+                </form>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="tags" class="form-label">Tags: </label>
-            <input type="text" class="form-control" name="tags" id="tags" autocomplete="off">
-        </div>
-
-        <button type="submit">Create Post</button>
-    </form>
-
+            
+    </section>
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
