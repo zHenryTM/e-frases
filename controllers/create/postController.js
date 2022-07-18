@@ -19,6 +19,9 @@ router.post("/create/post", authMiddleware, async (req, res) => {
 
         let user = await User.findById(userId)
 
+        tags = tags.toLowerCase()
+        tags = tags.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+
         let post = await new Post({
             frase: frase,
             tags: tags,
