@@ -6,7 +6,9 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    tags: String,
+    tags: [{
+        type: String
+    }],
     author: {
         type: Schema.Types.ObjectId,
         ref: "User",

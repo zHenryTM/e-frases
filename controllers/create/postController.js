@@ -7,6 +7,7 @@ const User = require("../../models/User")
 const Post = require("../../models/Post")
 
 const authMiddleware = require("./../../middlewares/auth")
+const tagsFormatted = require("./../../functions/tags")
 
 router.get("/create/post", authMiddleware, (req, res) => {
     res.render("addPost")
@@ -19,8 +20,7 @@ router.post("/create/post", authMiddleware, async (req, res) => {
 
         let user = await User.findById(userId)
 
-        tags = tags.toLowerCase()
-        tags = tags.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        tags = tagsFormatted(tags)
 
         let post = await new Post({
             frase: frase,
