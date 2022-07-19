@@ -8,6 +8,8 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="../css/index/styles.css">
+
     <title>homepage</title>
 </head>
 <body>
@@ -35,15 +37,18 @@
                         </li>
                     </ul>
                 <% } else { %>
-                    <ul class="navbar-nav ms-auto"> 
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a href="/create/post" class="nav-link">Criar post</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ms-2">
                             <a href="/logout" class="nav-link">Sair</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">Quem somos?</a>
+                        <li class="nav-item ms-3">
+                            <form class="d-flex" role="search">
+                                <input class="form-control" type="search" placeholder="Procurar frases" aria-label="Search">
+                                <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
+                              </form>
                         </li>
                     </ul>
                 <% } %>
@@ -53,12 +58,10 @@
         
     </section>
 
-    <section id="main-content" style="padding: 3% 3%;">
-        <div class="container-fluid">
-            
-
-            <% posts.forEach(post => { %>
-                <div class="card w-50 mb-3">
+    <section id="main-content">
+        <div class="w-50">
+         <% posts.forEach(post => { %>
+                <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">"<em><%= post.frase %></em>"</h5>
                         
