@@ -40,10 +40,16 @@ router.post("/filter/search", async (req, res) => {
     let correctPost = []
 
     posts.forEach(data => {
-        dataTags = data.tags
+        let dataTags = data.tags
+        let dataPhrase = data.frase
 
         dataTags.forEach(tag => {
             if (tag === search) return correctPost.push(data)
+        })
+
+        dataPhrase = dataPhrase.split(" ")
+        dataPhrase.forEach(phrase => {
+            if (phrase === search) return correctPost.push(data)
         })
     })
 
