@@ -32,9 +32,24 @@ router.get("/", async (req, res) => {
 
 router.post("/filter/search", async (req, res) => {
     let search = req.body.search
-    search = tagsFormatted(search)
 
-    let posts = await Post.find({tags: search})
+    search = tagsFormatted(search)
+    search = search.toString()
+
+    let posts = await Post.find({}).populate("author")
+    let correctPost = []
+
+    posts.forEach(data => {
+        dataTags = data.tags
+
+        dataTags.forEach(tag => {
+            if (tag === search) return correctPost.push(data)
+        })
+    })
+
+    posts = correctPost
+
+    console.log(posts)
 
     if(posts) {
         const auth = req.cookies.token
