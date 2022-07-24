@@ -1,9 +1,10 @@
 require("dotenv").config()
 
 const router = require("express").Router()
-const Post = require("./../../models/Post")
 const jwt = require("jsonwebtoken")
-const tagsFormatted = require("../../functions/tags")
+
+const Post = require("./../../models/Post")
+const correctPosts = require("../../functions/correctPosts")
 
 router.get("/", async (req, res) => {
     try {
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
             jwt.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
                 if(err) {
                     console.log("Erro ao verificar - Token inválido")
-                    res.render("index", {post: posts, isAuth: false})
+                    res.render("index", {posts: posts, isAuth: false})
                 } else {
                     console.log("Está autenticado!")
                     res.render("index", {posts: posts, isAuth: true})
@@ -31,31 +32,10 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/filter/search", async (req, res) => {
-    let search = req.body.search
-
-    search = tagsFormatted(search)
-    search = search.toString()
-
-    let posts = await Post.find({}).populate("author")
-    let correctPost = []
-
-    posts.forEach(data => {
-        let dataTags = data.tags
-        let dataPhrase = data.frase
-
-        dataTags.forEach(tag => {
-            if (tag === search) return correctPost.push(data)
-        })
-
-        dataPhrase = dataPhrase.split(" ")
-        dataPhrase.forEach(phrase => {
-            if (phrase === search) return correctPost.push(data)
-        })
-    })
-
-    posts = correctPost
+    let posts = await correctPosts(req)
 
     console.log(posts)
+    console.log(typeof posts)
 
     if(posts) {
         const auth = req.cookies.token
@@ -67,7 +47,7 @@ router.post("/filter/search", async (req, res) => {
             jwt.verify(req.cookies.token, process.env.JWT_SECRET, (err, decoded) => {
                 if(err) {
                     console.log("Erro ao verificar - Token inválido")
-                    res.render("index", {post: posts, isAuth: false})
+                    res.render("index", {posts: posts, isAuth: false})
                 } else {
                     console.log("Está autenticado!")
                     res.render("index", {posts: posts, isAuth: true})
