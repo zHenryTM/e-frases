@@ -7,6 +7,8 @@ module.exports = async (req) => {
     search = tagsFormatted(search)
     search = search.toString()
 
+    console.log(search)
+
     let posts = await Post.find({}).populate("author")
     let correctPost = []
 
@@ -15,13 +17,16 @@ module.exports = async (req) => {
         let dataPhrase = data.frase
 
         dataTags.forEach(tag => {
-            if (tag === search) return correctPost.push(data) 
-
+            if (tag === search) {
+                correctPost.push(data) 
+            }
         })
 
         dataPhrase = dataPhrase.split(" ")
         dataPhrase.forEach(phrase => {
-            if (phrase === search) return correctPost.push(data)
+            if (phrase === search) {
+                correctPost.push(data)
+            } 
         })
     })
 
