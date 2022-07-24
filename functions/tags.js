@@ -5,8 +5,6 @@ function tagsFormatted(tag) {
     tag = tag.replaceAll(/([.*+?^=!:${}()|\[\]\/\\])/g, "")
     tag = tag.split(" ")  
 
-    console.log(tag)   
-
     return tag
 }                         
 module.exports = tagsFormatted

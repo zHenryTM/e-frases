@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken")
 
 module.exports = (req, res, next) => {
     const auth = req.cookies.token
-    console.log(auth)
 
     if(!auth) {
         console.log("There's no Token here... :(")
