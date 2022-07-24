@@ -30,7 +30,6 @@ router.post("/create/post", authMiddleware, async (req, res) => {
 
         post.save()
             .then(async post => {
-                console.log(await post.populate("author"))
                 user = await User.findByIdAndUpdate(userId, {$push: {posts: post._id}})
                 res.redirect("/")
             })
